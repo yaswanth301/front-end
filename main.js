@@ -25,6 +25,18 @@ const Http = {
       return error;
     }
   },
+  postForm: async (url, data) => {
+    try {
+      const response =  await fetch(url, {
+        method: "POST",
+        body: data
+      })
+      const result = await response.json();
+      return result;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 };
 
 const setItem = (k, v) => {

@@ -1,34 +1,31 @@
-//variables -global
-let form_upload = select(".form");
-let submit = select(".submit");
+let submit = document.querySelector(".submit");
 
-
+function getRadioValue(target) {
+  var radio = selectAll(`[name=${target}]`);
+  for(i = 0; i < radio.length; i++) {
+   if(radio[i].checked){
+     return radio[i].value;
+   }
+  }
+ }
 
 //event listeners
-submit.addEventListener("submit",preventReload);
+submit.addEventListener("click", async (event) => {
+  event.preventDefault();
+  let formData = new FormData();
+  let title = select('[name="title"]');
+  let artistName = select('[name="artistName"]');
+  let audio = select('[name="audio"]');
+  let thumbnail = select('[name="thumbnail"]');
+  let gender = getRadioValue('gender');
 
-//prevent auto loading
-function preventReload(e){
-  e.preventDefault();
-  formUpdateData()
-  }
+  console.log(gender);
+  formData.append('title' , title.value)
+  formData.append('artistName' , artistName.value)
+  formData.append('audio' , audio.files[0])
+  formData.append('thumbnail' , thumbnail.files[0])
+  formData.append('gender' , gender.value)
+  let response = await Http.postForm('http://localhost:3000/add-new-audio', formData);
+  alert(`Audio Player \n ${response.Msg}`);
 
-
-//functionality
-// function formUpdateData(){
-//   let music_data = {
-//     title : form_upload.name.value,
-//     artistName : form_upload.artistName.value,
-//     audio : form_upload.music.value,
-//     thumbnail : form_upload.thumbnail.value,
-//     gender:form_upload.gender.value
-//   }
-//   console.log(music_data);
-// }
-
-let form = new FormData();
-
-form.append("title","happy");
-let myForm = document.getElementById("form");
-form = new FormData(myForm);
-console.log(form);
+});
