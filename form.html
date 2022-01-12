@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uploading Form</title>
+
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container_form">
+      <form id="form" novalidate>
+        <label for="title">Album Name</label>
+        <input type="text" class="name" name="title" placeholder="enter name of album"  />
+        <label for="artistName">Artist Name</label>
+        <input
+          type="text"
+          name="artistName"
+          placeholder="enter name of artist"
+          required="" maxlength="20" minlength="8"
+        />
+        <label for="audio">Music File</label>
+        <input type="file" name="audio" placeholder="upload mp3 file" required="" maxlength="20" minlength="8" accept="audio/mp3"/>
+        <label for="thumbnail">Thumbnail</label>
+        <input
+          type="file"
+          name="thumbnail"
+          placeholder="upload thumbnail file"
+          accept="image/png, image/jpeg"
+        />
+        <label for="gender">GENDER</label>
+        <div class="gender_status">
+          <input type="radio" value="male" name="gender" class="radio" placeholder="male" />
+          <label for="male">Male</label>
+          <input type="radio" value="female" name="gender" class="radio" placeholder="female" />
+          <label for="female" >Female</label>
+        </div>
+ 
+        <button type="submit" class="submit" value="submit">upload File</button>
+        <h1 class="status">upload files</h1>
+      </form>
+
+      <a href="./index.html" class="back_home">home-page</a>
+      <script src="./main.js"></script>
+      <script src="./form.js"></script>
+    </div>
+  </body>
+</html>
